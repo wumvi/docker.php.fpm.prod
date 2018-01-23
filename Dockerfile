@@ -8,7 +8,7 @@ ENV RUN_MODE PROD
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install --no-install-recommends -qq -y php7.2-fpm && \
+    apt-get install --no-install-recommends -qq -y php$PHP_VERSION-fpm && \
 	apt-get -y autoremove && \
 	apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
