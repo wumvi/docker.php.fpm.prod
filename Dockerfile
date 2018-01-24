@@ -1,7 +1,7 @@
 FROM wumvi/php.base
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
-LABEL version="1.0" php="7.2" mode="prod"
+LABEL version="1.0" php="7.1" mode="prod"
 
 ENV RUN_MODE PROD
 
@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 EXPOSE 9000
 
 HEALTHCHECK --interval=30s --timeout=5s \
-        CMD REDIRECT_STATUS=true SCRIPT_NAME=/tmp/ping SCRIPT_FILENAME=/tmp/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect /var/run/php/php7.2-fpm.sock
+        CMD REDIRECT_STATUS=true SCRIPT_NAME=/tmp/ping SCRIPT_FILENAME=/tmp/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect /var/run/php/php7.1-fpm.sock
 
 
-CMD ["/usr/sbin/php-fpm7.2", "-c", "/etc/php/7.2/fpm/php.ini", "-y", "/etc/php/7.2/fpm/php-fpm.conf", "-F"]
+CMD ["/usr/sbin/php-fpm7.1", "-c", "/etc/php/7.1/fpm/php.ini", "-y", "/etc/php/7.1/fpm/php-fpm.conf", "-F"]
