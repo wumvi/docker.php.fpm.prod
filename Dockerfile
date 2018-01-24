@@ -1,4 +1,4 @@
-FROM wumvi/php.base
+FROM wumvi/php.base:7.1
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
 LABEL version="1.0" php="7.1" mode="prod"
