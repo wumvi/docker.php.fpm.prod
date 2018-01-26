@@ -4,15 +4,28 @@ MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 LABEL version="1.0" php="7.1" mode="prod"
 
 ENV RUN_MODE PROD
+ADD cmd/ /
 
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install --no-install-recommends -qq -y php${PHP_VERSION}-fpm && \
+    apt-get install --no-install-recommends -qq -y git php${PHP_VERSION}-fpm php${PHP_VERSION}-dev make && \
     apt-get install -y libfcgi0ldbl && \
     #
     mkdir -p /var/run/php && \
     chown www-data:www-data /var/run/php && \
+    mkdir -p /soft/ && \
     #
+    cd /soft/ && \
+    git clone https://github.com/tony2001/pinba_extension.git --depth=1 && \
+    cd pinba_extension && \
+    phpize && \
+    ./configure && \
+    make && \
+    make install && \
+    #
+    chmod u+x /*.sh && \
+    rm -rf /soft/ && \
+    apt-get -y remove git php${PHP_VERSION}-dev make && \
 	apt-get -y autoremove && \
 	apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
