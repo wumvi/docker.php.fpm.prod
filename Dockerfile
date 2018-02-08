@@ -24,6 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     make install && \
     #
     chmod u+x /*.sh && \
+	wget http://gordalina.github.io/cachetool/downloads/cachetool.phar -O /usr/bin/cachetool.phar && \
     rm -rf /soft/ && \
     apt-get -y remove git php${PHP_VERSION}-dev make && \
 	apt-get -y autoremove && \
