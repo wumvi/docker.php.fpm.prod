@@ -1,7 +1,7 @@
-FROM wumvi/php.base:7.1
+FROM wumvi/php.base:7.2
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
-LABEL version="1.0" php="7.1" mode="prod"
+LABEL version="1.0" php="7.2" mode="prod"
 
 ENV RUN_MODE PROD
 ADD cmd/ /
@@ -37,6 +37,6 @@ EXPOSE 9000
 ADD www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 HEALTHCHECK --interval=10s --timeout=5s \
-        CMD REDIRECT_STATUS=true SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect /var/run/php/php7.1-fpm.sock
+        CMD REDIRECT_STATUS=true SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect /var/run/php/php7.2-fpm.sock
 
-CMD ["/usr/sbin/php-fpm7.1", "-c", "/etc/php/7.1/fpm/php.ini", "-y", "/etc/php/7.1/fpm/php-fpm.conf", "-F"]
+CMD ["/usr/sbin/php-fpm7.2", "-c", "/etc/php/7.2/fpm/php.ini", "-y", "/etc/php/7.2/fpm/php-fpm.conf", "-F"]
