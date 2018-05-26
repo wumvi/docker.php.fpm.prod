@@ -1,7 +1,7 @@
 FROM wumvi/php.base:7.1
 MAINTAINER Vitaliy Kozlenko <vk@wumvi.com>
 
-LABEL version="1.0" php="7.1" mode="prod"
+LABEL version="1.1" php="7.1" mode="prod"
 
 ENV RUN_MODE PROD
 ADD cmd/ /
@@ -24,11 +24,11 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     make install && \
     #
     chmod u+x /*.sh && \
-	wget http://gordalina.github.io/cachetool/downloads/cachetool.phar -O /usr/bin/cachetool.phar && \
+    wget http://gordalina.github.io/cachetool/downloads/cachetool.phar -O /usr/bin/cachetool.phar && \
     rm -rf /soft/ && \
     apt-get -y remove git php${PHP_VERSION}-dev make && \
-	apt-get -y autoremove && \
-	apt-get -y clean && \
+    apt-get -y autoremove && \
+    apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     echo 'end'
 
